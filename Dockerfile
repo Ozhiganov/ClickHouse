@@ -1,10 +1,10 @@
-FROM gitpod/workspace-full
+FROM yandex/clickhouse-server
 
 ARG repository="deb http://repo.yandex.ru/clickhouse/deb/stable/ main/"
 ARG version=19.1.13
 ARG gosu_ver=1.10
 
-RUN sudo apt-get update \
+RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
         apt-transport-https \
         dirmngr \
@@ -35,12 +35,12 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN sudo mkdir /docker-entrypoint-initdb.d
+RUN mkdir /docker-entrypoint-initdb.d
 
 COPY docker_related_config.xml /etc/clickhouse-server/config.d/
 COPY entrypoint.sh /entrypoint.sh
 
-RUN sudo chmod +x \
+RUN chmod +x \
     /entrypoint.sh \
     /bin/gosu
 
