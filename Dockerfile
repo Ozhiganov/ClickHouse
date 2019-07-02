@@ -1,5 +1,7 @@
 FROM yandex/clickhouse-server
 
+USER root
+
 ARG repository="deb http://repo.yandex.ru/clickhouse/deb/stable/ main/"
 ARG version=19.1.13
 ARG gosu_ver=1.10
